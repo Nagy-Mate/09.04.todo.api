@@ -1,4 +1,6 @@
-﻿namespace Solution.App
+﻿using System.Net.Http.Json;
+
+namespace Solution.App
 {
     public partial class MainPage : ContentPage
     {
@@ -19,6 +21,13 @@
                 CounterBtn.Text = $"Clicked {count} times";
 
             SemanticScreenReader.Announce(CounterBtn.Text);
+        }
+        private async void OnWBtnClicked(object? sender, EventArgs e)
+        {
+            var httpClient = new HttpClient();
+            var response = await httpClient.GetFromJsonAsync<List<WeatherForecast>>("http://localhost:5249/weatherforecast");
+
+            WInfo.Text = response.First().Summary;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Json;
+﻿using Solution.Common;
+using System.Net.Http.Json;
 
 namespace Solution.App
 {

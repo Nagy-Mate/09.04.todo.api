@@ -4,7 +4,7 @@ namespace Solution.Services
 {
     public interface ITodoService
     {
-        Task<List<Todo>> Create(Todo entity);
-        Task<List<Todo>> ListAll();
+        Task CreateAsync(Todo entity);
+        Task<List<Todo>> ListAllAsync();
     }
 }

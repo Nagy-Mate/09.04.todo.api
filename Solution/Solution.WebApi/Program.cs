@@ -32,6 +32,16 @@ var summaries = new[]
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
+app.MapGet("list", async (ITodoService service) =>
+{
+    return await service.ListAllAsync();    
+});
+
+app.MapPost("create", async (Todo model, ITodoService service) =>
+{
+    await service.CreateAsync(model);
+});
+
 app.MapGet("/weatherforecast", () =>
 {
     var forecast = Enumerable.Range(1, 5).Select(index =>

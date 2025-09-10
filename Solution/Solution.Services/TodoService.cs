@@ -5,11 +5,11 @@ namespace Solution.Services;
 
 public class TodoService(TodoDbContext db) : ITodoService
 {
-    public async Task<List<Todo>> ListAll()
+    public async Task<List<Todo>> ListAllAsync()
     {
         return await db.Todos.ToListAsync();
     }
-    public async Task Create(Todo entity)
+    public async Task CreateAsync(Todo entity)
     {
         await db.Todos.AddAsync(entity);
         await db.SaveChangesAsync();

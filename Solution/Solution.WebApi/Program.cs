@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Solution.Data;
+using Solution.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,10 @@ builder.Services.AddOpenApi();
 var connectionString = builder.Configuration.GetConnectionString("TodoDbContext");
 builder.Services.AddDbContext<TodoDbContext>(options =>
   options.UseSqlServer(connectionString));
+
+//Dependency Injecion
+builder.Services.AddTransient<ITodoService, TodoService>();
+
 
 var app = builder.Build();
 

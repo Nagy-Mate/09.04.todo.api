@@ -11,6 +11,7 @@ public class TodoService(TodoDbContext db) : ITodoService
     }
     public async Task CreateAsync(Todo entity)
     {
+        entity.Created = DateTime.Now;
         await db.Todos.AddAsync(entity);
         await db.SaveChangesAsync();
     }

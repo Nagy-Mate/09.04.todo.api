@@ -4,3 +4,15 @@ GET {{Solution.WebApi_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+POST {{Solution.WebApi_HostAddress}}/create/
+Content-Type: application/json
+Accept: application/json
+{
+  "title": "Teszt2",
+  "description": "TENNI VALÓ32",
+  "daeadLine": "2025-10-04"
+}
+
+###
+GET {{Solution.WebApi_HostAddress}}/list/
+Accept: application/json

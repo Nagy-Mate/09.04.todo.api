@@ -16,3 +16,26 @@ Accept: application/json
 ###
 GET {{Solution.WebApi_HostAddress}}/list/
 Accept: application/json
+
+###
+DELETE {{Solution.WebApi_HostAddress}}/delete/2
+Accept: application/json
+
+###
+PUT {{Solution.WebApi_HostAddress}}/update/
+Content-Type: application/json
+Accept: application/json
+{
+  "id": 1,
+  "title": "Teszt asdfsdfasf",
+  "description": "asd updateasfdasf",
+  "daeadLine": "2025-10-05"
+}
+
+###
+PUT {{Solution.WebApi_HostAddress}}/ready/1
+Content-Type: application/json
+Accept: application/json
+{
+  "id": 1
+}

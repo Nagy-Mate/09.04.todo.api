@@ -15,5 +15,31 @@ public class TodoService(TodoDbContext db) : ITodoService
         await db.Todos.AddAsync(entity);
         await db.SaveChangesAsync();
     }
+    public async Task DeleteAsync(int id)
+    {
+        await db.Todos.Where(t => t.Id == id).ExecuteDeleteAsync();
+        await db.SaveChangesAsync();
+    }
+    public async Task UpdateAsync(Todo entity)
+    {
+        var toUpdate = db.Todos.FirstOrDefault(todo => todo.Id == entity.Id);
+        if (toUpdate != null)
+        {
+            toUpdate.Title = entity.Title;
+            toUpdate.Description = entity.Description;
+            toUpdate.DaeadLine= entity.DaeadLine;
+            toUpdate.IsReady = entity.IsReady;
+            await db.SaveChangesAsync();    
+        }
+    }
 
+    public async Task ReadyAsync(int id)
+    {
+        var toReady = db.Todos.FirstOrDefault(todo => todo.Id == id);
+        if (toReady != null)
+        {
+            toReady.IsReady = true;
+        }
+        await db.SaveChangesAsync();
+    }
 }

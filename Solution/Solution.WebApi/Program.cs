@@ -40,5 +40,24 @@ app.MapPost("/create", async (Todo model, ITodoService service) =>
     return Results.Created();
 });
 
+app.MapDelete("delete/{id:int}", async (int id, ITodoService service) =>
+{
+    await service.DeleteAsync(id);
+
+    return Results.Ok();    
+});
+
+app.MapPut("update", async (Todo model, ITodoService service) =>
+{
+    await service.UpdateAsync(model);
+
+    return Results.Ok();
+});
+app.MapPut("ready/{id:int}", async (int id, ITodoService service) =>
+{
+    await service.ReadyAsync(id);
+
+    return Results.Ok();
+});
 
 app.Run();

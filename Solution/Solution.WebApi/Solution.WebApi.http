@@ -8,8 +8,8 @@ POST {{Solution.WebApi_HostAddress}}/create/
 Content-Type: application/json
 Accept: application/json
 {
-  "title": "Teszt2",
-  "description": "TENNI VALÓ32",
+  "title": "Teszt5",
+  "description": "TENNI 55",
   "daeadLine": "2025-10-04"
 }
 
@@ -26,16 +26,12 @@ PUT {{Solution.WebApi_HostAddress}}/update/
 Content-Type: application/json
 Accept: application/json
 {
-  "id": 1,
-  "title": "Teszt asdfsdfasf",
+  "id": 3,
+  "title": "Tnigger ",
   "description": "asd updateasfdasf",
   "daeadLine": "2025-10-05"
 }
 
 ###
-PUT {{Solution.WebApi_HostAddress}}/ready/1
-Content-Type: application/json
+PUT {{Solution.WebApi_HostAddress}}/ready/3
 Accept: application/json
-{
-  "id": 1
-}

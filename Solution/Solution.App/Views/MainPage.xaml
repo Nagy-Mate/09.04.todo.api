@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:Solution.App.ViewModels"
+             xmlns:dbModels="clr-namespace:Solution.Data;assembly=Solution.Data"
+             xmlns:local="clr-namespace:Solution.App"
+             x:DataType="viewModel:MainPageViewModel"
+             x:Class="Solution.App.Views.MainPage"
+             BackgroundColor="#f5f5f5">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <Button
+                Text="Load Todos" 
+                Command="{Binding LoadTodosCommand}"
+                HorizontalOptions="Fill"
+                BackgroundColor="#2196F3"
+                TextColor="White"
+                CornerRadius="8"/>
+
+            <CollectionView ItemsSource="{Binding Todos}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="dbModels:Todo">
+                        <Border
+                            Margin="0,5"
+                            Padding="10"
+                            BackgroundColor="White">
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="{Binding Title}" 
+                                       FontAttributes="Bold"
+                                       FontSize="18" 
+                                       TextColor="#333"/>
+                                <Label Text="{Binding Description}"
+                                       FontSize="14" 
+                                       TextColor="#666"/>
+                                <Label Text="{Binding Created , StringFormat='Created: {0:yyyy-MM-dd}'}"
+                                       FontSize="12" 
+                                       TextColor="#999"/>
+                                <Label Text="{Binding DeadLine, StringFormat='DeadLine: {0:yyyy-MM-dd}'}"
+                                       FontSize="12" 
+                                       TextColor="#999"/>
+                                <Label Text="{Binding IsReady, StringFormat='Ready: {0}'}" 
+                                        FontSize="12"
+                                        TextColor="#999"/>
+
+                                <Button
+                                    Text="Delete Todo"
+                                    BackgroundColor="Red"
+                                    TextColor="White"
+                                    CornerRadius="5"
+                                    Padding="5,2"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:MainPageViewModel}}, Path=DeleteTodoCommand}"
+                                    CommandParameter="{Binding .}"/>
+
+                            </VerticalStackLayout>
+                        </Border>
+
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

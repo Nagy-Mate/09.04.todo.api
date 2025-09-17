@@ -43,10 +43,10 @@ public class TodoService(TodoDbContext db) : ITodoService
             setters => 
                 setters.SetProperty(e => e.Description, entity.Description)
                 .SetProperty(e => e.Title, entity.Title)
-                .SetProperty(e => e.DaeadLine, entity.DaeadLine)
+                .SetProperty(e => e.DeadLine, entity.DeadLine)
                 .SetProperty(e => e.IsReady, entity.IsReady)
             );
-        await db.SaveChangesAsync();
+        //await db.SaveChangesAsync();
 
     }
 
@@ -67,7 +67,7 @@ public class TodoService(TodoDbContext db) : ITodoService
         //új mód
         await db.Todos.Where(t => t.Id == id).ExecuteUpdateAsync(
             setters => setters.SetProperty(e => e.IsReady, true));
-        await db.SaveChangesAsync();
+        //await db.SaveChangesAsync();
 
     }
 }

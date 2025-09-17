@@ -12,8 +12,8 @@ using Solution.Data;
 namespace Solution.Data.Migrations
 {
     [DbContext(typeof(TodoDbContext))]
-    [Migration("20250910062622_inint")]
-    partial class inint
+    [Migration("20250917070524_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,7 +36,7 @@ namespace Solution.Data.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DaeadLine")
+                    b.Property<DateTime>("DeadLine")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")

@@ -4,6 +4,7 @@
     {
         public AppShell()
         {
+            Routing.RegisterRoute("AddTodoPage", typeof(AddTodoPage));
             InitializeComponent();
         }
     }

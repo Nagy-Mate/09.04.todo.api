@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-
-namespace Solution.App
+﻿namespace Solution.App
 {
     public static class MauiProgram
     {
@@ -14,6 +12,13 @@ namespace Solution.App
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+            //Views
+            builder.Services.AddTransient<MainPage>();
+
+            //ViewModels
+            builder.Services.AddTransient<MainPageViewModel>();
+
+            
 
 #if DEBUG
     		builder.Logging.AddDebug();

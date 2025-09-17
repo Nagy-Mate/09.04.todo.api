@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:viewModel="clr-namespace:Solution.App.ViewModels"
+             xmlns:dbModels="clr-namespace:Solution.Data;assembly=Solution.Data"
+             xmlns:local="clr-namespace:Solution.App"
+             x:DataType="viewModel:AddTodoPageViewModel"
+             x:Class="Solution.App.Views.AddTodoPage"
+             BackgroundColor="#f5f5f5"
+             Title="AddTodoPage">
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            
+            <Label Text="Title: "/>
+            <Entry Style="{StaticResource Entry}" Text="{Binding TitleE}"/>
+
+            <Label Text="Description: "/>
+            <Entry Style="{StaticResource Entry}" Text="{Binding DescriptionE}"/>
+
+            <Label Text="Deadlin: "/>
+            <DatePicker MinimumDate="{Binding MinDate}"
+                MaximumDate="12/31/2027"
+                Date="{Binding SelectedDate}"/>
+
+            <Button Text="Add todo"
+                    BackgroundColor="Green"
+                    TextColor="White"
+                    CornerRadius="5"
+                    Command="{Binding AddTodoCommand }"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+
+</ContentPage>

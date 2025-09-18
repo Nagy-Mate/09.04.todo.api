@@ -45,14 +45,37 @@
                                         FontSize="12"
                                         TextColor="#999"/>
 
-                                <Button
-                                    Text="Delete Todo"
-                                    BackgroundColor="Red"
-                                    TextColor="White"
-                                    CornerRadius="5"
-                                    Padding="5,2"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:MainPageViewModel}}, Path=DeleteTodoCommand}"
-                                    CommandParameter="{Binding .}"/>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Button
+                                        Grid.Column="0"
+                                        Grid.Row="0"
+                                        Text="Törlés"
+                                        BackgroundColor="Red"
+                                        TextColor="White"
+                                        CornerRadius="5"
+                                        Padding="5,2"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:MainPageViewModel}}, Path=DeleteTodoCommand}"
+                                        CommandParameter="{Binding .}"/>
+                                    
+                                    <Button
+                                        Grid.Column="1"
+                                        Grid.Row="0"
+                                        Text="Készen van"
+                                        BackgroundColor="Green"
+                                        TextColor="White"
+                                        CornerRadius="5"
+                                        Padding="5,2"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:MainPageViewModel}}, Path=ReadyTodoCommand}"
+                                        CommandParameter="{Binding .}"/>
+                                </Grid>
+
 
                             </VerticalStackLayout>
                         </Border>

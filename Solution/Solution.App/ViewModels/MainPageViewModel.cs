@@ -9,6 +9,7 @@ public partial class MainPageViewModel: Todo
     private ObservableCollection<Todo> todos;
 
     public IAsyncRelayCommand LoadTodosCommand => new AsyncRelayCommand(OnLoadTodos);
+    public IAsyncRelayCommand ReadyTodoCommand => new AsyncRelayCommand<Todo>(OnReadyTodo);
     public IAsyncRelayCommand<Todo> DeleteTodoCommand => new AsyncRelayCommand<Todo>(OnDeleteTodo);
 
     public MainPageViewModel()
@@ -19,23 +20,49 @@ public partial class MainPageViewModel: Todo
     }
     private async Task OnLoadTodos()
     {
-
-        var response = await _httpClient.GetFromJsonAsync<List<Todo>>("http://localhost:5249/list");
-
-        if (response != null) 
+        try
         {
-            Todos.Clear();  
-            foreach (var todo in response)
+            var response = await _httpClient.GetFromJsonAsync<List<Todo>>("http://localhost:5249/list");
+
+            if (response != null)
             {
-                Todos.Add(todo);
+                Todos.Clear();
+                foreach (var todo in response)
+                {
+                    Todos.Add(todo);
+                }
             }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
         }
     }
 
     private async Task OnDeleteTodo(Todo todo)
     {
+        try
+        {
+            await _httpClient.DeleteAsync($"http://localhost:5249/delete/{todo.Id}");
+            Todos.Remove(todo);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
 
-        await _httpClient.DeleteAsync($"http://localhost:5249/delete/{todo.Id}");
-        Todos.Remove(todo);
+    private async Task OnReadyTodo(Todo todo)
+    {
+        try
+        {
+            await _httpClient.PutAsJsonAsync($"http://localhost:5249/ready/{todo.Id}", todo);
+
+            await OnLoadTodos();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
     }
 }

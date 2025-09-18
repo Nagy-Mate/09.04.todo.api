@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Solution.App.Views.EditTodoPage"
+             xmlns:viewModel="clr-namespace:Solution.App.ViewModels"
+             xmlns:local="clr-namespace:Solution.App.Views"
+             xmlns:dbModels="clr-namespace:Solution.Data;assembly=Solution.Data"
+             x:DataType="viewModel:EditTodoPageViewModel"
+             BackgroundColor="#f5f5f5"
+             Title="EditTodoPage">
+
+    <VerticalStackLayout             
+            Padding="30,0"
+            Spacing="25">
+        <Label
+            Text="Válasszon tennivalót a szerkesztéshez: "/>
+        <Picker ItemsSource="{Binding Todos}"
+                ItemDisplayBinding="{Binding Title}"
+                SelectedItem="{Binding SelectedTodoForEdit ,Mode=TwoWay}"
+                />
+        <Label
+            Text="Adja meg a új címet: "/>
+        <Entry 
+            Style="{StaticResource Entry}" Text="{Binding NewTitle}"/>
+
+        <Label
+            Text="Adja meg a új leírást: "/>
+        <Entry 
+            Style="{StaticResource Entry}" Text="{Binding NewDescription}"/>
+
+        <Label Text="Adja meg az új határidőt: "/>
+        <DatePicker MinimumDate="{Binding MinDate}"
+                MaximumDate="12/31/2027"
+                Date="{Binding SelectedNewDate}"/>
+        
+        <Button Text="Szerkesztés"
+                    BackgroundColor="Orange"
+                    TextColor="White"
+                    CornerRadius="5"
+                    Command="{Binding EditTodoCommand}"/>
+
+    </VerticalStackLayout>
+</ContentPage>

@@ -14,14 +14,18 @@
                 });
             //Views
             builder.Services.AddTransient<MainPage>();
+            builder.Services.AddTransient<AddTodoPage>();
+            builder.Services.AddTransient<EditTodoPage>();
 
             //ViewModels
             builder.Services.AddTransient<MainPageViewModel>();
+            builder.Services.AddTransient<AddTodoPageViewModel>();
+            builder.Services.AddTransient<EditTodoPageViewModel>();
 
-            
+
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

@@ -2,7 +2,7 @@ namespace Solution.App.Views;
 
 public partial class AddTodoPage : ContentPage
 {
-	public AddTodoPageViewModel AddTodoPageViewModel => BindingContext as AddTodoPageViewModel;
+	public AddTodoPageViewModel ViewModel => ViewModel as AddTodoPageViewModel;
 	public AddTodoPage(AddTodoPageViewModel viewModel)
 	{
 		BindingContext = viewModel;	

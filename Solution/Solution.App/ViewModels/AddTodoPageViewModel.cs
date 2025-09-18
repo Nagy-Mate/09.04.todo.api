@@ -1,7 +1,9 @@
-﻿namespace Solution.App.ViewModels;
+﻿using Microsoft.Maui.Controls.Shapes;
+
+namespace Solution.App.ViewModels;
 
 [ObservableObject]
-public partial class AddTodoPageViewModel: Todo
+public partial class AddTodoPageViewModel
 {
     private readonly HttpClient _httpClient;
 
@@ -9,7 +11,7 @@ public partial class AddTodoPageViewModel: Todo
     private string titleE;
 
     [ObservableProperty]
-    private DateTime? minDate;
+    private DateTime minDate;
 
     [ObservableProperty]
     private DateTime selectedDate;
@@ -21,29 +23,34 @@ public partial class AddTodoPageViewModel: Todo
     public AddTodoPageViewModel()
     {
         _httpClient = new HttpClient(); 
-        minDate = DateTime.Now;
+        MinDate = DateTime.Now;
+        SelectedDate = DateTime.Now;
     }
     private async Task OnAddTodo()
     {
-        var newTodo = new Todo
+        if (!string.IsNullOrWhiteSpace(TitleE))
         {
-            Title = titleE,
-            Description = descriptionE,
-            Created = DateTime.Now,
-            DeadLine = selectedDate,
-            IsReady = false,
-        };
-
-        try
-        {
-            var res = await _httpClient.PostAsJsonAsync("http://localhost:5249/create/", newTodo);
-            titleE = string.Empty;
-            descriptionE = string.Empty;
-            selectedDate = DateTime.Now;
+            var newTodo = new Todo
+            {
+                Title = TitleE,
+                Description = DescriptionE,
+                Created = DateTime.Now,
+                DeadLine = SelectedDate,
+                IsReady = false,
+            };
+            try
+            {
+                var res = await _httpClient.PostAsJsonAsync("http://localhost:5249/create/", newTodo);
+               
+                TitleE = string.Empty;
+                DescriptionE = string.Empty;
+                SelectedDate = DateTime.Now;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: { ex.Message}");
+            }
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error: { ex.Message}");
-        }
+        
     }
 }

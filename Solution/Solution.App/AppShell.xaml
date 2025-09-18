@@ -14,4 +14,8 @@
         Title="Add Page"
         ContentTemplate="{DataTemplate views:AddTodoPage}"
         Route="AddTodoPage" />
+    <ShellContent
+        Title="Edit Page"
+        ContentTemplate="{DataTemplate views:EditTodoPage}"
+        Route="EditTodoPage" />
 </Shell>

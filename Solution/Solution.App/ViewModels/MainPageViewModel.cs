@@ -97,8 +97,10 @@ public partial class MainPageViewModel: Todo
         try
         {
             await _httpClient.PutAsJsonAsync($"http://localhost:5249/ready/{todo.Id}", todo);
-
-            await OnLoadTodos();
+            if(IsChekboxChecked)
+                await OnLoadAllTodos();
+            else
+                await OnLoadTodos();
         }
         catch (Exception ex)
         {

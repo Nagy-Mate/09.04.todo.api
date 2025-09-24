@@ -46,23 +46,47 @@
                                 </MultiBinding>
                             </Border.BackgroundColor>
                             <VerticalStackLayout Spacing="5">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
                                 <Label Text="{Binding Title}" 
                                        FontAttributes="Bold"
                                        FontSize="18" 
-                                       TextColor="#333"/>
+                                       TextColor="#333"
+                                       Grid.Column="0"
+                                       Grid.Row="0"/>
                                 <Label Text="{Binding Description}"
                                        FontSize="14" 
-                                       TextColor="#666"/>
+                                       TextColor="#666"
+                                       Grid.Column="0"
+                                       Grid.Row="1"/>
                                 <Label Text="{Binding Created , StringFormat='Created: {0:yyyy-MM-dd}'}"
                                        FontSize="12" 
-                                       TextColor="#999"/>
+                                       TextColor="#999"
+                                       Grid.Column="2"
+                                       Grid.Row="0"/>
                                 <Label Text="{Binding DeadLine, StringFormat='DeadLine: {0:yyyy-MM-dd}'}"
-                                       FontSize="12" 
-                                       TextColor="#999"/>
+                                        FontSize="12" 
+                                        TextColor="#999"
+                                        Grid.Column="3"
+                                        Grid.Row="0"/>
                                 <Label Text="{Binding IsReady, StringFormat='Ready: {0}'}" 
                                         FontSize="12"
-                                        TextColor="#999"/>
+                                        TextColor="#999"
+                                        Grid.Column="4"
+                                        Grid.Row="0"/>
 
+                                </Grid>
+                                
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
@@ -76,6 +100,7 @@
                                         Grid.Row="0"
                                         Text="Törlés"
                                         BackgroundColor="Red"
+                                        MaximumWidthRequest="100"
                                         TextColor="White"
                                         CornerRadius="5"
                                         Padding="5,2"
@@ -87,6 +112,7 @@
                                         Grid.Row="0"
                                         Text="Készen van"
                                         BackgroundColor="Green"
+                                        MaximumWidthRequest="100"                               
                                         TextColor="White"
                                         CornerRadius="5"
                                         Padding="5,2"

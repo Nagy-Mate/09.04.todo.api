@@ -8,7 +8,7 @@ public class ExpiredTodoBgcConverter: IMultiValueConverter
     {
         if (values[0] is bool isReady && values[1] is DateTime deadline)
         {
-            return !isReady && deadline < DateTime.Now ? Colors.LightPink : Colors.White;
+            return !isReady && deadline < DateTime.Now.AddDays(-1)  ? Colors.LightPink : Colors.White;
         }
         return Colors.White;
     }

@@ -14,6 +14,9 @@ Accept: application/json
 ###
 GET {{Solution.WebApi_HostAddress}}/list/
 Accept: application/json
+###
+GET {{Solution.WebApi_HostAddress}}/listNotReady/
+Accept: application/json
 
 ###
 DELETE {{Solution.WebApi_HostAddress}}/delete/2

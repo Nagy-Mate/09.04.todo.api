@@ -9,6 +9,10 @@ public class TodoService(TodoDbContext db) : ITodoService
     {
         return await db.Todos.ToListAsync();
     }
+    public async Task<List<Todo>> ListNotReadyAsync()
+    {
+        return await db.Todos.Where(t => !t.IsReady).ToListAsync();
+    }
     public async Task CreateAsync(Todo entity)
     {
         entity.Created = DateTime.Now;

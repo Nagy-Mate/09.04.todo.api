@@ -32,6 +32,10 @@ app.MapGet("/list", async (ITodoService service) =>
 {
     return await service.ListAllAsync();    
 });
+app.MapGet("/listNotReady", async (ITodoService service) =>
+{
+    return await service.ListNotReadyAsync();
+});
 
 app.MapPost("/create", async (Todo model, ITodoService service) =>
 {

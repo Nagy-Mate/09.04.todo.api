@@ -8,6 +8,26 @@ public partial class MainPageViewModel: Todo
     [ObservableProperty]
     private ObservableCollection<Todo> todos;
 
+    private bool _isChekboxChecked;
+
+    public bool IsChekboxChecked
+    {
+        get => _isChekboxChecked;
+        set
+        {
+            if (_isChekboxChecked != value)
+            {
+                _isChekboxChecked = value;
+                OnPropertyChanged();
+                if (value) 
+                    OnLoadAllTodos();
+                else
+                    OnLoadTodos();
+                
+            }
+        }
+    }
+
     public IAsyncRelayCommand LoadTodosCommand => new AsyncRelayCommand(OnLoadTodos);
     public IAsyncRelayCommand ReadyTodoCommand => new AsyncRelayCommand<Todo>(OnReadyTodo);
     public IAsyncRelayCommand<Todo> DeleteTodoCommand => new AsyncRelayCommand<Todo>(OnDeleteTodo);
@@ -19,6 +39,26 @@ public partial class MainPageViewModel: Todo
        _ = OnLoadTodos();
     }
     private async Task OnLoadTodos()
+    {
+        try
+        {
+            var response = await _httpClient.GetFromJsonAsync<List<Todo>>("http://localhost:5249/listNotReady");
+
+            if (response != null)
+            {
+                Todos.Clear();
+                foreach (var todo in response)
+                {
+                    Todos.Add(todo);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+    private async Task OnLoadAllTodos()
     {
         try
         {
@@ -65,4 +105,5 @@ public partial class MainPageViewModel: Todo
             Console.WriteLine($"Error: {ex.Message}");
         }
     }
+
 }

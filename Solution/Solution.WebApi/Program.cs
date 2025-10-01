@@ -16,8 +16,22 @@ builder.Services.AddDbContext<TodoDbContext>(options =>
 //Dependency Injecion
 builder.Services.AddTransient<ITodoService, TodoService>();
 
+var allowSpecificOrigins = "_allowSpecificOrigins";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(allowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("*")
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                      });
+});
+
+
 
 var app = builder.Build();
+app.UseCors(allowSpecificOrigins);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -26,6 +40,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 
 
 app.MapGet("/list", async (ITodoService service) =>
@@ -63,5 +78,7 @@ app.MapPut("ready/{id:int}", async (int id, ITodoService service) =>
 
     return Results.Ok();
 });
+
+
 
 app.Run();

@@ -1,4 +1,6 @@
-﻿namespace Solution.App
+﻿using Solution.App.WinUI;
+
+namespace Solution.App
 {
     public static class MauiProgram
     {
@@ -22,6 +24,9 @@
             builder.Services.AddTransient<AddTodoPageViewModel>();
             builder.Services.AddTransient<EditTodoPageViewModel>();
 
+            builder.Services.AddHttpClient();
+
+            
 
 
 #if DEBUG

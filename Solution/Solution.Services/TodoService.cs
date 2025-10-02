@@ -13,6 +13,12 @@ public class TodoService(TodoDbContext db) : ITodoService
     {
         return await db.Todos.Where(t => !t.IsReady).ToListAsync();
     }
+
+    public async Task<Todo> GetTodoByIdAsync(int id)
+    {
+        return await db.Todos.FirstOrDefaultAsync(t => t.Id == id);
+    }
+
     public async Task CreateAsync(Todo entity)
     {
         entity.Created = DateTime.Now;

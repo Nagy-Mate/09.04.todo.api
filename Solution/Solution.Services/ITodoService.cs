@@ -10,5 +10,6 @@ namespace Solution.Services
         Task<List<Todo>> ListNotReadyAsync();
         Task ReadyAsync(int id);
         Task UpdateAsync(Todo entity);
+        Task<Todo> GetTodoByIdAsync(int id);
     }
 }

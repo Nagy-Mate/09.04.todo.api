@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Homepage.css";
+import dayjs from "dayjs";
 
 function HomePage() {
   const [todos, setTodos] = useState([]);
@@ -47,8 +48,13 @@ function HomePage() {
             <tr key={todo.id}>
               <td>{todo.title}</td>
               <td>{todo.description}</td>
-              <td>{todo.deadLine}</td>
-              <td>{todo.isReady}</td>
+              <td>{dayjs(todo.Deadline).format("YYYY. MMMM D. HH:mm")}</td>
+              <td>{todo.isReady ? "Kész" : "Nincs Kész"}</td>
+              <td>
+                <a href={`http://localhost:5173/editPage/${todo.id}`}>
+                  Szerkesztés
+                </a>
+              </td>
             </tr>
           ))}
         </tbody>

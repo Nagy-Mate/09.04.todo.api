@@ -1,19 +1,20 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
-import HomePage from './HomePage.tsx'
-import EditPage from './EditPage.tsx'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.tsx";
+import HomePage from "./HomePage.tsx";
+import EditPage from "./EditPage.tsx";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
-    <Routes>
-      <Route path='/' element={<App />}/>
-      <Route path='/homepage' element={<HomePage />}/>
-      <Route path='/editPage/:id' element={<EditPage />}/>
-    </Routes>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/homepage" element={<HomePage />} />
+        <Route path="/editPage/:id" element={<EditPage />} />
+        <Route path="*" element={<h1>404 Page not found</h1>} />
+      </Routes>
     </BrowserRouter>
-  </StrictMode>,
-)
+  </StrictMode>
+);

@@ -9,3 +9,5 @@ Solution/Solution.Data/bin
 Solution/Solution.Data/obj
 Solution/Solution.Services/obj
 Solution/Solution.Services/bin
+Solution/Solution.WebApi/appsettings.json
+Solution/Solution.WebApi/Solution.WebApi.http

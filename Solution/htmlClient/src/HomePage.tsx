@@ -8,20 +8,38 @@ function HomePage() {
   const [showAll, setShowAll] = useState<boolean>(false);
 
   useEffect(() => {
-    const dataFetch = async () => {
-      try {
-        const url = showAll
-          ? "http://localhost:5249/list/"
-          : "http://localhost:5249/listNotReady/";
-        const response = await fetch(url);
-        const data = await response.json();
-        setTodos(data);
-      } catch (error) {
-        console.error("Hiba történt az adatok lekérésekor:", error);
-      }
-    };
     dataFetch();
   }, [showAll]);
+
+  const dataFetch = async () => {
+    try {
+      const url = showAll
+        ? "http://localhost:5249/list/"
+        : "http://localhost:5249/listNotReady/";
+      const response = await fetch(url);
+      const data = await response.json();
+      setTodos(data);
+    } catch (error) {
+      console.error("Hiba történt az adatok lekérésekor:", error);
+    }
+  };
+
+  const deleteTodo = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:5249/delete/${id}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        console.log("Sikeresen törölve");
+        dataFetch();
+      } else {
+        console.error("Törlés sikertelen");
+      }
+    } catch (error) {
+      console.error("Hiba történt a törlés közben:", error);
+    }
+  };
 
   return (
     <>
@@ -59,6 +77,9 @@ function HomePage() {
                 <td>{todo.isReady ? "Kész" : "Nincs Kész"}</td>
                 <td>
                   <Link to={`/editPage/${todo.id}`}>Szerkesztés</Link>
+                </td>
+                <td>
+                  <button onClick={() => deleteTodo(todo.id)}>Törlés</button>
                 </td>
               </tr>
             );

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./Homepage.css";
 
 function HomePage() {
   const [todos, setTodos] = useState([]);
@@ -13,6 +14,7 @@ function HomePage() {
         const response = await fetch(url);
         const data = await response.json();
         setTodos(data);
+        console.log(todos);
       } catch (error) {
         console.error("Hiba történt az adatok lekérésekor:", error);
       }
@@ -33,11 +35,24 @@ function HomePage() {
         />
         Összes teendő mutatása
       </label>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.title}</li>
-        ))}
-      </ul>
+      <table>
+        <tbody>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Deadline</th>
+            <th>Ready</th>
+          </tr>
+          {todos.map((todo) => (
+            <tr key={todo.id}>
+              <td>{todo.title}</td>
+              <td>{todo.description}</td>
+              <td>{todo.deadLine}</td>
+              <td>{todo.isReady}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </>
   );
 }

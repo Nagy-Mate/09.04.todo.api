@@ -46,7 +46,8 @@ function HomePage() {
           </tr>
           {todos.map((todo) => {
             const isOverdue =
-              dayjs(todo.deadLine).isBefore(dayjs()) && !todo.isReady;
+              dayjs(todo.deadLine).isBefore(dayjs().startOf("day")) &&
+              !todo.isReady;
             return (
               <tr
                 key={todo.id}

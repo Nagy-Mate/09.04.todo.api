@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 import HomePage from './HomePage.tsx'
+import EditPage from './EditPage.tsx'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 createRoot(document.getElementById('root')!).render(
@@ -11,6 +12,7 @@ createRoot(document.getElementById('root')!).render(
     <Routes>
       <Route path='/' element={<App />}/>
       <Route path='/homepage' element={<HomePage />}/>
+      <Route path='/editPage/:id' element={<EditPage />}/>
     </Routes>
     </BrowserRouter>
   </StrictMode>,

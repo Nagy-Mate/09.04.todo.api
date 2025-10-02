@@ -16,7 +16,6 @@ function HomePage() {
         const response = await fetch(url);
         const data = await response.json();
         setTodos(data);
-        console.log(todos);
       } catch (error) {
         console.error("Hiba történt az adatok lekérésekor:", error);
       }
@@ -45,17 +44,24 @@ function HomePage() {
             <th>Deadline</th>
             <th>Ready</th>
           </tr>
-          {todos.map((todo) => (
-            <tr key={todo.id}>
-              <td>{todo.title}</td>
-              <td>{todo.description}</td>
-              <td>{dayjs(todo.Deadline).format("YYYY. MMMM D. HH:mm")}</td>
-              <td>{todo.isReady ? "Kész" : "Nincs Kész"}</td>
-              <td>
-                <Link to={`/editPage/${todo.id}`}>Szerkesztés</Link>
-              </td>
-            </tr>
-          ))}
+          {todos.map((todo) => {
+            const isOverdue =
+              dayjs(todo.deadLine).isBefore(dayjs()) && !todo.isReady;
+            return (
+              <tr
+                key={todo.id}
+                style={isOverdue ? { backgroundColor: "lightpink" } : {}}
+              >
+                <td>{todo.title}</td>
+                <td>{todo.description}</td>
+                <td>{dayjs(todo.deadLine).format("YYYY. MMMM D. HH:mm")}</td>
+                <td>{todo.isReady ? "Kész" : "Nincs Kész"}</td>
+                <td>
+                  <Link to={`/editPage/${todo.id}`}>Szerkesztés</Link>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </>

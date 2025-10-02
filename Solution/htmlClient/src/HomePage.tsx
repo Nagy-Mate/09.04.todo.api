@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./Homepage.css";
 import dayjs from "dayjs";
 
@@ -51,9 +52,7 @@ function HomePage() {
               <td>{dayjs(todo.Deadline).format("YYYY. MMMM D. HH:mm")}</td>
               <td>{todo.isReady ? "Kész" : "Nincs Kész"}</td>
               <td>
-                <a href={`http://localhost:5173/editPage/${todo.id}`}>
-                  Szerkesztés
-                </a>
+                <Link to={`/editPage/${todo.id}`}>Szerkesztés</Link>
               </td>
             </tr>
           ))}
